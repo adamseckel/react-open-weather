@@ -10,7 +10,7 @@ const Fixed = styled.div`
   z-index: 2;
   left: 0;
   right: 0;
-  max-width: 375px;
+  max-width: 295px;
   width: 100%;
   margin: 0 auto;
   background-color: ${colors.primary};
