@@ -19,8 +19,10 @@ class WeatherReducer extends Component {
   }
 
   componentDidMount = async () => {
+    const openWeatherRequest = OpenWeatherRequest(this.props.openWeatherApiKey, 'London', 826);
+    this.setState({openWeatherRequest});
+    
     try {
-      const openWeatherRequest = OpenWeatherRequest(this.props.openWeatherApiKey, 'London', 826);
       const weather = await openWeatherRequest.getLondonWeather();
       this.setState({weather, openWeatherRequest, dataSource: 'api'});
       removeSplash();      
