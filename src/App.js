@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'emotion/react';
 import {WeatherReducer} from './components/reducers';
 import Header from './components/Header';
-import Current from './components/Current';
 import Forecast from './components/Forecast';
 
 const Phone = styled.div`

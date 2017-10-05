@@ -1,10 +1,8 @@
-import 'weather-icons/css/weather-icons.css'
 
 import React from 'react';
 import styled from 'emotion/react';
 import {text} from './Text';
 import weatherIconMap from './weatherIconMap.json';
-console.log(weatherIconMap)
 
 const Icon = styled.i`
   composes: ${text};
