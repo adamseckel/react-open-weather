@@ -7,7 +7,7 @@ import Forecast from './components/Forecast';
 const Phone = styled.div`
   max-width: 375px;
   margin: 0 auto;
-  padding: 0 80px 80px;
+  padding: 0 40px 40px;
 `;
 
 class App extends Component {

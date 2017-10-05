@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {OpenWeatherRequest} from '../../services';
 
 function removeSplash() {
+  console.log('hit')
   const splash = document.getElementById("splash");
   splash.className = "removed";
   setTimeout(() => {
@@ -18,10 +19,14 @@ class WeatherReducer extends Component {
   }
 
   componentDidMount = async () => {
-    const openWeatherRequest = OpenWeatherRequest(this.props.openWeatherApiKey, 'London', 826);
-    const weather = await openWeatherRequest.getLondonWeather();
-    this.setState({weather, openWeatherRequest, dataSource: 'api'});
-    removeSplash();    
+    try {
+      const openWeatherRequest = OpenWeatherRequest(this.props.openWeatherApiKey, 'London', 826);
+      const weather = await openWeatherRequest.getLondonWeather();
+      this.setState({weather, openWeatherRequest, dataSource: 'api'});
+      removeSplash();      
+    } catch(error) {
+      removeSplash();
+    }
   }
 
   fetchFromLocal = async () => {
