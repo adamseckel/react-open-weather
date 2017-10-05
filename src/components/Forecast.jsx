@@ -17,8 +17,6 @@ const Sticky = styled.div`
   background-color: ${colors.primary}
 `;
 
-
-
 export default({forecast, now, className}) => {
   function renderCurrentWeather() {
     return (
@@ -30,7 +28,7 @@ export default({forecast, now, className}) => {
           <Current weather={forecast && forecast[now][0]}/>
         </Column>
       </div>
-    );
+    )
   }
 
   function renderForecast() {
@@ -52,7 +50,7 @@ export default({forecast, now, className}) => {
           </Row>
         </div>
       </div>
-    );
+    )
   }
 
   return (

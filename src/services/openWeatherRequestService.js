@@ -55,10 +55,13 @@ export default function(apiKey = '2cf1dc4180d34b998f4efbd8fad4a350', city = 'Lon
   const service = {
     async getLondonWeather() {
       const {data} = await openWeatherRequest.get();
+      const forecast = mapForecast(normalizeResponse(data.list));
+      const now = Object.keys(forecast)[0];
+      
       return {
         city: data.city,
-        forecast: mapForecast(normalizeResponse(data.list)),
-        now: moment().format('YYYY-MM-DD')
+        forecast,
+        now
       };
     },
 
