@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "node generateCSV.js && react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "react-app-rewired": "1.2.0",
     "eject": "react-scripts eject"
