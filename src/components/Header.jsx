@@ -2,12 +2,11 @@ import React from 'react';
 import styled from 'emotion/react';
 import {colors, Text, Toggle} from './styleguide';
 import {Row} from './base';
-import hexToRgba from 'hex-rgba';
 
 const Fixed = styled.div`
   position: fixed;
   top: 0;
-  padding: 40px 0 0;
+  padding: 40px 80px 0;
   z-index: 2;
   left: 0;
   right: 0;
@@ -15,12 +14,10 @@ const Fixed = styled.div`
   margin: 0 auto;
   background-color: ${colors.primary};
 `;
-// background: linear-gradient(to bottom, ${hexToRgba(colors.primary, 100)} 0%, ${hexToRgba(colors.primary, 100)} 50%, ${hexToRgba(colors.primary, 90)} 70%, ${hexToRgba(colors.primary, 1)} 100%);
 
 
 export default({city, handleToggleDataSource, dataSource}) => {
   function handleToggle(toggled) {
-    console.log(toggled, dataSource)
     return toggled ? handleToggleDataSource('local') : handleToggleDataSource('api')
   }
 

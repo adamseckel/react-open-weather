@@ -8,9 +8,9 @@ export default({weather}) => {
   return (
     <Column css={`margin: 60px;`}>
       <Text css={`margin-bottom: 20px;`}>
-        <WeatherIcon large time='day' weather={weather && weather.weather[0].id}/>
+        <WeatherIcon large time='day' weather={weather && weather.weatherID}/>
       </Text>
-      <Text size='4'>{weather && Math.round(weather.main.temp)}º</Text>
+      <Text size='4'>{weather && Math.round(weather.temperature)}º</Text>
     </Column>
   );
 };

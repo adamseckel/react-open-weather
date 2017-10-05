@@ -5,10 +5,9 @@ import {colors, Text, Divider, WeatherIcon} from './styleguide';
 import Current from './Current';
 import {Column, Row} from './base';
 import moment from 'moment';
-import hexToRgba from 'hex-rgba';
 
 const Period = styled(Column)`
-  margin: 10px;
+  margin: 10px 20px;
   &:last-of-type {
     margin-right: 50px;
   }
@@ -32,6 +31,7 @@ export default({forecast, now, className}) => {
           <Current weather={forecast && forecast[now][0]}/>
         </Column>
       </div>
+
       {forecast && Object.keys(forecast).map((date) => 
         <div key={date} css={`margin: 10px 0; width: 100%;`}>
           <Sticky>
@@ -39,28 +39,16 @@ export default({forecast, now, className}) => {
             <Divider/>
           </Sticky>
           <div css={`position: relative; max-width: 100%; width: 110%;`}>
-            <div css={`
-                position: absolute;
-                right: -10%;
-                top: 0;
-                bottom: 0;
-                width: 10%;
-                z-index: 10;
-                background: linear-gradient(to left, ${hexToRgba(colors.primary, 100)} 0%,${hexToRgba(colors.primary, 90)} 80%, ${hexToRgba(colors.primary, 1)} 100%);
-              `}>
-            </div>
-              <Row justify='start' css={`position: relative; max-width: 100%; overflow-x: scroll; -webkit-overflow-scrolling: touch`}>
-              
+            <Row justify='start' css={`position: relative; max-width: 100%; overflow-x: scroll; -webkit-overflow-scrolling: touch`}>
               {forecast[date].map((period) => 
-                <Period key={period.dt_txt}>
-                  <WeatherIcon time='day' weather={period && period.weather[0].id} css={`margin-bottom: 8px;`}/>
-                  <Text size='1' bold css={`margin-bottom: 4px;`}>{period && Math.round(period.main.temp)}º</Text>
-                  <Text>{moment(period.dt_txt).format('HH:mm')}</Text>
+                <Period key={period.date}>
+                  <WeatherIcon time='day' weather={period && period.weatherID} css={`margin-bottom: 8px;`}/>
+                  <Text size='1' bold css={`margin-bottom: 4px;`}>{period && Math.round(period.temperature)}º</Text>
+                  <Text>{moment(period.date).format('HH:mm')}</Text>
                 </Period>
               )}
             </Row>
           </div>
-         
         </div>
       )}
     </Column>

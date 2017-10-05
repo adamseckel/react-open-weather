@@ -8,7 +8,6 @@ const Phone = styled.div`
   max-width: 375px;
   margin: 0 auto;
   padding: 0 80px 80px;
-  width: 100%;
 `;
 
 class App extends Component {
@@ -19,9 +18,9 @@ class App extends Component {
   render() {
     return (
       <Phone>
-        <WeatherReducer> 
+        <WeatherReducer openWeatherApiKey={this.props.openWeatherApiKey}> 
           {({actions, store}) =>
-            <div>
+            <div css={`width: 100%;`}>
               <Header css={`z-index: 2`} city={store.weather && store.weather.city} dataSource={store.dataSource} handleToggleDataSource={actions.handleToggleDataSource}/>
               <Forecast css={`z-index: 1; position: relative; margin-top: 95px;`} forecast={store.weather && store.weather.forecast} now={store.weather && store.weather.now}/>
             </div>
