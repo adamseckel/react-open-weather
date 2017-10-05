@@ -6,12 +6,11 @@ import {Row} from './base';
 const Fixed = styled.div`
   position: fixed;
   top: 0;
-  padding: 40px 40px 0;
+  padding: 40px 0 0;
   z-index: 2;
-  left: 0;
-  right: 0;
-  max-width: 295px;
-  width: 100%;
+  left: 40px;
+  right: 40px;
+  max-width: 375px;
   margin: 0 auto;
   background-color: ${colors.primary};
 `;
