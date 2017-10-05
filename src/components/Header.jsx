@@ -9,7 +9,10 @@ const Fixed = styled.div`
   top: 0;
   padding: 40px 0 0;
   z-index: 2;
-  width: 375px;
+  left: 0;
+  right: 0;
+  max-width: 375px;
+  margin: 0 auto;
   background-color: ${colors.primary};
 `;
 // background: linear-gradient(to bottom, ${hexToRgba(colors.primary, 100)} 0%, ${hexToRgba(colors.primary, 100)} 50%, ${hexToRgba(colors.primary, 90)} 70%, ${hexToRgba(colors.primary, 1)} 100%);
