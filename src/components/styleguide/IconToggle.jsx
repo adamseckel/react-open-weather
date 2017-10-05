@@ -41,7 +41,7 @@ const IconContainer = styled(Row)`
 
 const Icon = styled.img`
   transition: opacity .3s ease;
-  width: 18px;
+  width: 14px;
   &:hover {
     opacity: 0.4;
   }

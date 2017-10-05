@@ -17,9 +17,11 @@ const Sticky = styled.div`
   background-color: ${colors.primary}
 `;
 
+
+
 export default({forecast, now, className}) => {
-  return (
-    <Column justify='start' align='start' className={className}>
+  function renderCurrentWeather() {
+    return (
       <div key='now' css={`margin: 10px 0; width: 100%;`}>
         <Sticky>
           <Text bold spaced uppercase size='1'> NOW </Text>
@@ -28,26 +30,35 @@ export default({forecast, now, className}) => {
           <Current weather={forecast && forecast[now][0]}/>
         </Column>
       </div>
+    );
+  }
 
-      {forecast && Object.keys(forecast).map((date) => 
-        <div key={date} css={`margin: 10px 0; width: 100%;`}>
-          <Sticky>
-            <Text bold spaced uppercase size='1'>{date === now ? 'TODAY' : moment(date).format('dddd')}</Text>
-            <Divider/>
-          </Sticky>
-          <div css={`position: relative; max-width: 100%; width: 110%;`}>
-            <Row justify='start' css={`position: relative; max-width: 100%; overflow-x: scroll; -webkit-overflow-scrolling: touch`}>
-              {forecast[date].map((period) => 
-                <Period key={period.date}>
-                  <WeatherIcon time='day' weather={period && period.weatherID} css={`margin-bottom: 8px;`}/>
-                  <Text size='1' bold css={`margin-bottom: 4px;`}>{period && Math.round(period.temperature)}º</Text>
-                  <Text>{moment(period.date).format('HH:mm')}</Text>
-                </Period>
-              )}
-            </Row>
-          </div>
+  function renderForecast() {
+    return forecast && Object.keys(forecast).map((date) => 
+      <div key={date} css={`margin: 10px 0; width: 100%;`}>
+        <Sticky>
+          <Text bold spaced uppercase size='1'>{date === now ? 'TODAY' : moment(date).format('dddd')}</Text>
+          <Divider/>
+        </Sticky>
+        <div css={`position: relative; max-width: 100%; width: 110%;`}>
+          <Row justify='start' css={`position: relative; max-width: 100%; overflow-x: scroll; -webkit-overflow-scrolling: touch`}>
+            {forecast[date].map((period) => 
+              <Period key={period.date}>
+                <WeatherIcon time='day' weather={period && period.weatherID} css={`margin-bottom: 8px;`}/>
+                <Text size='1' bold css={`margin-bottom: 4px;`}>{period && Math.round(period.temperature)}º</Text>
+                <Text>{moment(period.date).format('HH:mm')}</Text>
+              </Period>
+            )}
+          </Row>
         </div>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <Column justify='start' align='start' className={className}>
+      {renderCurrentWeather()}
+      {renderForecast()}
     </Column>
   );
 };
