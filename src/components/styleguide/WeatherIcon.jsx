@@ -4,14 +4,16 @@ import styled from 'emotion/react';
 import {text} from './Text';
 import weatherIconMap from './weatherIconMap.json';
 
-const Icon = styled.i`
+const Icon = styled.img`
   composes: ${text};
-  font-size: ${props => props.large ? '4rem' : '1.4rem'};
+  width: ${props => props.large ? '4rem' : '1.4rem'};
+  opacity: 0.9;
 `;
 
 export default({time = 'day', weather = '200', className, ...props}) => {
   return weather && <Icon 
-    className={`wi wi-${time}-${weatherIconMap[weather].icon} ${className}`}
+    src={`${process.env.PUBLIC_URL}/svg/${weatherIconMap[weather]}.svg`}
+    className={className}
     {...props}>
   </Icon>;
 };
