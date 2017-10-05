@@ -7,10 +7,7 @@ import {Column, Row} from './base';
 import moment from 'moment';
 
 const Period = styled(Column)`
-  margin: 10px 20px;
-  &:last-of-type {
-    margin-right: 50px;
-  }
+  margin: 10px 50px 10px 0;
 `;
 
 const Sticky = styled.div`
