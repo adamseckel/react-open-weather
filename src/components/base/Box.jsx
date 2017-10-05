@@ -16,17 +16,13 @@ const alignMap = {
   stretch: 'stretch'
 };
 
-export const box = css`
+export const Box = styled.div`
   display: flex;
   flex-direction: ${props => props.column ? 'column' : 'row'};
   justify-content: ${props => justifyMap[props.justify] || 'center'};
   align-items: ${props => alignMap[props.align] || 'center'};
   flex-wrap: ${props => props.wrap ? 'wrap' : ' no-wrap'};
   flex-grow: ${props => props.grow ? 1 : 0};
-`;
-
-const Box = styled.div`
-  composes: ${box};
 `;
 
 export const Row = styled(Box)`
@@ -36,5 +32,3 @@ export const Row = styled(Box)`
 export const Column = styled(Box)`
   flex-direction: column;
 `;
-
-export default Box;

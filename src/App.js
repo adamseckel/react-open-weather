@@ -1,40 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import styled from 'emotion/react';
-import {OpenWeatherRequest} from './services';
+import {WeatherReducer} from './components/reducers';
+import Header from './components/Header';
+import Current from './components/Current';
+import Forecast from './components/Forecast';
 
-const Emotion = styled.div`
-  width: 20px; 
-  height: 20px;
-  background-color: blue;
+const Phone = styled.div`
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 0 80px 80px;
+  width: 100%;
 `;
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      weather: undefined
-    };
   }
 
-  componentDidMount = async () => {
-    const openWeatherRequest = OpenWeatherRequest();
-    const weather = await openWeatherRequest.getLondonWeather();
-    console.log(weather)
-  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-      
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Phone>
+        <WeatherReducer> 
+          {({actions, store}) =>
+            <div>
+              <Header css={`z-index: 2`} city={store.weather && store.weather.city} dataSource={store.dataSource} handleToggleDataSource={actions.handleToggleDataSource}/>
+              <Forecast css={`z-index: 1; position: relative; margin-top: 95px;`} forecast={store.weather && store.weather.forecast} now={store.weather && store.weather.now}/>
+            </div>
+          }
+        </WeatherReducer> 
+      </Phone>
     );
   }
 }
