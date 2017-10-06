@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'emotion/react';
-import {css} from 'emotion';
+import styled from 'react-emotion';
 import {colors, Text, Divider, WeatherIcon} from './styleguide';
 import Current from './Current';
 import {Column, Row} from './base';

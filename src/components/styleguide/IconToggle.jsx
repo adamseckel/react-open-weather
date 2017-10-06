@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'emotion/react';
-import {text} from './Text';
+import styled from 'react-emotion';
 import colors from './colors';
 import {Row} from '../base';
 import {css} from 'emotion';

@@ -1,5 +1,4 @@
-import styled from 'emotion/react';
-import {css} from 'emotion';
+import styled from 'react-emotion';
 
 const justifyMap = {
   start: 'flex-start',

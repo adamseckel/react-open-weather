@@ -1,15 +1,6 @@
-import axios from 'axios';
 import moment from 'moment';
 
-export default function(apiKey = '2cf1dc4180d34b998f4efbd8fad4a350', city = 'London', countryCode = 826) {
-  const openWeatherRequest = axios.create({
-    baseURL: `https://api.openweathermap.org/data/2.5/forecast?q=${city},${countryCode}&appid=${apiKey}&units=metric`
-  });
-
-  const localWeatherRequest = axios.create({
-    baseURL: `${process.env.PUBLIC_URL}/londonWeather.csv`
-  });
-
+export default function(openWeatherRequest, csvWeatherRequest) {
   const csvCity = {
     name: 'London'
   };
@@ -46,13 +37,13 @@ export default function(apiKey = '2cf1dc4180d34b998f4efbd8fad4a350', city = 'Lon
     return list.map((period) => {
       return {
         date: period.dt_txt,
-        temperature: period.main.temp,
-        weatherID: period.weather[0].id
+        temperature: period.main.temp.toString(),
+        weatherID: period.weather[0].id.toString()
       };
     });
   }
 
-  const service = {
+  const self = {
     async getLondonWeather() {
       const {data} = await openWeatherRequest.get();
       const forecast = mapForecast(normalizeResponse(data.list));
@@ -66,7 +57,7 @@ export default function(apiKey = '2cf1dc4180d34b998f4efbd8fad4a350', city = 'Lon
     },
 
     async getLocalLondonWeather() {
-      const {data} = await localWeatherRequest.get();
+      const {data} = await csvWeatherRequest.get();
       const forecast = mapForecast(convertCSVToObject(data));
       const now = Object.keys(forecast)[0];
 
@@ -78,5 +69,5 @@ export default function(apiKey = '2cf1dc4180d34b998f4efbd8fad4a350', city = 'Lon
     }
   };
 
-  return service;
+  return self;
 }

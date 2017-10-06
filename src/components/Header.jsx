@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import {colors, Text, Toggle} from './styleguide';
 import {Row} from './base';
 
@@ -21,10 +21,13 @@ export default({city, handleToggleDataSource, dataSource}) => {
     return toggled ? handleToggleDataSource('local') : handleToggleDataSource('api')
   }
 
-  return <Fixed>
-    <Row justify='space-between' align='end'>
-      <Text size='3'> {city && city.name} </Text>
-      <Toggle css={`margin-bottom: 10px;`} toggled={dataSource === 'local'} handleToggle={handleToggle}/>
-    </Row>
-  </Fixed>
+  return (
+    <Fixed>
+      <Row justify='space-between' align='end'>
+        <Text size='3' css={`margin-left: -2px;`}> {city && city.name} </Text>
+        <Toggle css={`margin-bottom: 10px;`} toggled={dataSource === 'local'} handleToggle={handleToggle}/>
+      </Row>
+    </Fixed>
+  );
+  
 };

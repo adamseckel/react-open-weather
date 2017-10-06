@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import {OpenWeatherRequest} from '../../services';
 
 function removeSplash() {
-  console.log('hit')
-  const splash = document.getElementById("splash");
-  splash.className = "removed";
-  setTimeout(() => {
-    splash.parentNode.removeChild(splash);
-  }, 400);
+  try {
+    const splash = document.getElementById("splash");
+    splash.className = "removed";
+    setTimeout(() => {
+      splash.parentNode.removeChild(splash);
+    }, 400);
+  } catch(e) {
+    console.error('Cant remove splash');
+  }
 }
 
 class WeatherReducer extends Component {
@@ -19,12 +22,12 @@ class WeatherReducer extends Component {
   }
 
   componentDidMount = async () => {
-    const openWeatherRequest = OpenWeatherRequest(this.props.openWeatherApiKey, 'London', 826);
+    const openWeatherRequest = OpenWeatherRequest(this.props.openWeatherRequest, this.props.csvRequest);
     this.setState({openWeatherRequest});
     
     try {
       const weather = await openWeatherRequest.getLondonWeather();
-      this.setState({weather, openWeatherRequest, dataSource: 'api'});
+      this.setState({weather, dataSource: 'api'});
       removeSplash();      
     } catch(error) {
       removeSplash();
@@ -42,7 +45,6 @@ class WeatherReducer extends Component {
   }
 
   handleToggleDataSource = (dataSource) => {
-    console.log(dataSource)
     if (dataSource === 'api') {
       this.setState({dataSource})
       return this.fetchFromApi();

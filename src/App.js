@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import {WeatherReducer} from './components/reducers';
-import Header from './components/Header';
-import Forecast from './components/Forecast';
+import {Header, Forecast} from './components';
 
 const Phone = styled.div`
   max-width: 375px;
@@ -11,14 +10,10 @@ const Phone = styled.div`
 `;
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Phone>
-        <WeatherReducer openWeatherApiKey={this.props.openWeatherApiKey}> 
+        <WeatherReducer openWeatherRequest={this.props.openWeatherRequest} csvRequest={this.props.csvRequest}> 
           {({actions, store}) =>
             <div css={`width: 100%;`}>
               <Header css={`z-index: 2`} city={store.weather && store.weather.city} dataSource={store.dataSource} handleToggleDataSource={actions.handleToggleDataSource}/>

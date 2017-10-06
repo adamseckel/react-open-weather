@@ -1,5 +1,4 @@
 const axios = require('axios');
-const moment = require('moment');
 const arrayToCsv = require('array-to-csv');
 const fs = require('fs');
 

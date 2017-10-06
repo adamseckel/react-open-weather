@@ -1,4 +1,4 @@
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 import colors from './colors';
 import {css} from 'emotion';
 
@@ -19,7 +19,7 @@ export const text = css`
 `;
 
 export const Text = styled.p`
-  composes: ${text};
+  ${text};
   text-transform: ${props => props.uppercase ? 'uppercase' : 'none'};
   font-style: ${props => props.italic ? 'italic' : 'none'};
   text-align: ${props => props.right ? 'right' : props.center ? 'center' : 'left'};
